@@ -107,8 +107,10 @@ public class HomeWork {
     /* принимаем указатель на массив и заполняем значения прибавлением указанного значения к предудущему */
     static void fillElementPlusValuePrevious (int[] array, int plusvalue) {
 
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (i == 0) ? 1 : array[i-1] + plusvalue;
+        array[0] = 1;
+
+        for (int i = 1; i < array.length; i++) {
+            array[i] = array[i-1] + plusvalue;
         }
 
     }
@@ -159,13 +161,13 @@ public class HomeWork {
         int sumright = 0;
 
         for (int i = 0; i < array.length; i++) {
-
             sumleft += array[i];
-            sumright = 0;
+        }
 
-            for (int j = i + 1; j < array.length; j++) {
-                sumright += array[j];
-            }
+        for (int i = 0; i < array.length; i++) {
+
+            sumleft -= array[i];
+            sumright += array[i];
 
             if (sumleft == sumright) return true;
 
