@@ -3,7 +3,8 @@ package ru.geekbrains.lessons.c;
 import java.util.Random;
 import java.util.Scanner;
 
-public class TicTacToe {
+public class TicTakToe {
+
     private static final char HUMAN_DOT = 'X';
     private static final char AI_DOT = 'O';
     private static final char EMPTY_DOT = '_';
