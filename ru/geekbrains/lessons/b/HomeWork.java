@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 package ru.geekbrains.lessons.b;
 
 import java.util.Random;
@@ -217,4 +216,3 @@ public class HomeWork {
     }
 
 }
->>>>>>> lesson.b
