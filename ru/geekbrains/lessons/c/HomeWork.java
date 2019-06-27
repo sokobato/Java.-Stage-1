@@ -98,7 +98,8 @@ public class HomeWork {
     private static boolean isMapFull() {
         for (int x = 0; x < DIMENSION; x++) {
             for (int y = 0; y < DIMENSION; y++) {
-                if (field[x][y] == EMPTY_DOT) return false;
+                //if (field[x][y] == EMPTY_DOT) return false;
+                if (isEmptyCell(x, y)) return false;
             }
         }
         return true;
@@ -120,8 +121,7 @@ public class HomeWork {
 
     public static void aiTurn() {
 
-        int x = 0;
-        int y = 0;
+        int[] argstep = {0,0};
 
         // 5 к 6, что захотим потопить игрока нафиг:)
        int variant = RANDOM.nextInt(6);
@@ -136,14 +136,14 @@ public class HomeWork {
            boolean aiwinstep = false;
 
            //Ищем свою выигрышную комбинацию
-           aiwinstep = searchWinStep(x, y, AI_DOT);
+           aiwinstep = searchWinStep(argstep, AI_DOT);
 
            if (aiwinstep) {
-               field[x][y] = AI_DOT;
+               field[argstep[0]][1] = AI_DOT;
            } else {
-               userwinstep = searchWinStep(x, y, HUMAN_DOT);
+               userwinstep = searchWinStep(argstep, HUMAN_DOT);
                if (userwinstep){
-                   field[x][y] = AI_DOT;
+                   field[argstep[0]][argstep[1]] = AI_DOT;
                } else {
                    setDotRandomStep(AI_DOT);
                }
@@ -152,16 +152,18 @@ public class HomeWork {
     }
 
     /* Пытаемся найти выигрышную комбинацию */
-    static boolean searchWinStep(int x, int y, char dot){
-        x = 0;
-        y = 0;
-        for (x = 0; x < DIMENSION; x++) {
-            for (y = 0; y < DIMENSION; y++) {
+    static boolean searchWinStep(int argstep[], char dot){
+        for (int x = 0; x < DIMENSION; x++) {
+            for (int y = 0; y < DIMENSION; y++) {
                 if (isEmptyCell(x, y)) {
                     field[x][y] = dot;
                     boolean check = checkWin(dot);
                     field[x][y] = EMPTY_DOT;
-                    if (check) return true;
+                    if (check) {
+                        argstep[0] = x;
+                        argstep[1] = y;
+                        return true;
+                    }
                 }
             }
         }
