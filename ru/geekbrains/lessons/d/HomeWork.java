@@ -32,6 +32,14 @@ public class HomeWork {
         информацию только о сотрудниках старше 40 лет*/
         printEmployeesOverAge(employees,40);
 
+        /* 6. Создать метод, повышающий зарплату всем сотрудникам старше 45 лет на 5000; */
+        changeSallaryEmployeesOverAge(employees, 45, 5000);
+
+        // тестируем наши изменения
+        for (Employee emp : employees) {
+            System.out.println("Employee name " + emp.getFullName() + "; salary: " + emp.getSalary());
+        }
+
     }
 
     /* 4. Вывести при помощи методов из пункта 3 ФИО и должность. */
@@ -51,8 +59,15 @@ public class HomeWork {
         for (Employee emp : empOverAge) {
              System.out.println("Employee: " + emp.getFullName() + "; age: " + emp.getAge());
         }
-
     }
 
+    /* 6. Создать метод, повышающий зарплату всем сотрудникам старше 45 лет на 5000; */
+    static void changeSallaryEmployeesOverAge(ArrayList<Employee> employees, int conditionAge, int surcharge){
+        System.out.println("My staff:");
+        ArrayList<Employee> empOverAge = Employee.getEmployeOverAge(employees, conditionAge);
+        for (Employee emp : empOverAge) {
+            emp.changeSalary(surcharge);
+        }
+    }
 }
 

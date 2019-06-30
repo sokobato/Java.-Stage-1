@@ -68,6 +68,10 @@ public class Employee {
         this.salary = salary;
     }
 
+    public void changeSalary(int surcharge) {
+        this.salary = getSalary() + surcharge;
+    }
+
     public String getFullName() {
         return fullName;
     }
